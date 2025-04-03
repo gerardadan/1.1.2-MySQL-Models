@@ -1,163 +1,165 @@
-### 📌 **Base de Datos: mydb_task_001_lvl_02**  
+Here is the translation of your database schema description for GitHub:
 
-📍 **Descripción:**  
-Este esquema de base de datos gestiona información sobre empleados, tiendas, clientes, direcciones, pedidos y productos. Está diseñado para una tienda con servicio de entrega a domicilio y en tienda.
+### 📌 **Database: mydb_task_001_lvl_02**
+
+📍 **Description:**  
+This database schema manages information about employees, stores, customers, addresses, orders, and products. It is designed for a store with both delivery and in-store services.
 
 ---
 ![Alt Text](Task_01_level_02.png)
 ---
 
-## 🔹 **Entidades y Relaciones**
+## 🔹 **Entities and Relationships**
 
-### **1️⃣ Empleado (`employee`)**
-- Almacena datos de los empleados.
-- Tipos de empleados: cocineros y repartidores.
-- Relación con: tiendas (`shop`) y pedidos (`salesorder`).
+### **1️⃣ Employee (`employee`)**
+- Stores data about employees.
+- Types of employees: cooks and delivery drivers.
+- Relationship with: stores (`shop`) and orders (`salesorder`).
 
-🗂 **Atributos Principales:**  
-- `employee_id`: Identificador único del empleado.  
-- `name`: Nombre del empleado.  
-- `lastname`: Apellidos del empleado.  
-- `phone`: Número de teléfono.  
-- `nif`: Identificación fiscal (única).  
-- `employee_typee`: Tipo de empleado (cocinero o repartidor).  
-
----
-
-### **2️⃣ Tienda (`shop`)**
-- Representa las tiendas físicas.  
-- Relación con: empleados (`employee`) y direcciones (`address`).  
-
-🗂 **Atributos Principales:**  
-- `shop_id`: Identificador único de la tienda.  
-- `name`: Nombre de la tienda.  
-- `code`: Código de la tienda (único y autoincremental).  
-- `address`: Dirección de la tienda.  
+🗂 **Main Attributes:**  
+- `employee_id`: Unique identifier for the employee.  
+- `name`: Employee's first name.  
+- `lastname`: Employee's last name.  
+- `phone`: Phone number.  
+- `nif`: Tax identification number (unique).  
+- `employee_type`: Type of employee (cook or delivery driver).  
 
 ---
 
-### **3️⃣ Dirección (`address`)**
-- Guarda información de las direcciones.  
-- Relación con: tiendas (`shop`), clientes (`customer`) y ubicación geográfica (`city`, `province`, `country`).  
+### **2️⃣ Store (`shop`)**
+- Represents physical stores.  
+- Relationship with: employees (`employee`) and addresses (`address`).  
 
-🗂 **Atributos Principales:**  
-- `address_id`: Identificador único de la dirección.  
-- `street`: Nombre de la calle.  
-- `number`: Número del edificio.  
-- `floor`: Piso (opcional).  
-- `door`: Puerta (opcional).  
-- `city_id`, `province_id`, `country_id`: Relación con su ubicación.  
-- `postal_code`: Código postal.  
+🗂 **Main Attributes:**  
+- `shop_id`: Unique identifier for the store.  
+- `name`: Store name.  
+- `code`: Store code (unique and auto-incremental).  
+- `address`: Store's address.  
 
 ---
 
-### **4️⃣ Cliente (`customer`)**
-- Contiene la información de los clientes.  
-- Relación con: direcciones (`address`) y pedidos (`salesorder`).  
+### **3️⃣ Address (`address`)**
+- Stores address information.  
+- Relationship with: stores (`shop`), customers (`customer`), and geographical locations (`city`, `province`, `country`).  
 
-🗂 **Atributos Principales:**  
-- `customer_id`: Identificador único del cliente.  
-- `name`: Nombre del cliente.  
-- `last_name`: Apellidos del cliente.  
-- `address_id`: Relación con su dirección.  
-- `phone`: Número de teléfono (opcional).  
-
----
-
-### **5️⃣ Ciudad (`city`)**
-- Define las ciudades disponibles.  
-- Relación con: direcciones (`address`) y provincias (`province`).  
-
-🗂 **Atributos Principales:**  
-- `city_id`: Identificador único de la ciudad.  
-- `name`: Nombre de la ciudad.  
-- `code`: Código de la ciudad (único).  
-- `province_id`: Relación con su provincia.  
+🗂 **Main Attributes:**  
+- `address_id`: Unique identifier for the address.  
+- `street`: Street name.  
+- `number`: Building number.  
+- `floor`: Floor (optional).  
+- `door`: Door (optional).  
+- `city_id`, `province_id`, `country_id`: Relationships with location.  
+- `postal_code`: Postal code.  
 
 ---
 
-### **6️⃣ Provincia (`province`)**
-- Almacena información de las provincias.  
-- Relación con: ciudades (`city`) y países (`country`).  
+### **4️⃣ Customer (`customer`)**
+- Contains information about customers.  
+- Relationship with: addresses (`address`) and orders (`salesorder`).  
 
-🗂 **Atributos Principales:**  
-- `province_id`: Identificador único de la provincia.  
-- `name`: Nombre de la provincia (clave primaria).  
-- `code`: Código de la provincia (único).  
-- `country_id`: Relación con su país.  
-
----
-
-### **7️⃣ País (`country`)**
-- Define los países disponibles.  
-- Relación con: provincias (`province`).  
-
-🗂 **Atributos Principales:**  
-- `country_id`: Identificador único del país.  
-- `name`: Nombre del país.  
-- `code`: Código ISO del país (único).  
+🗂 **Main Attributes:**  
+- `customer_id`: Unique identifier for the customer.  
+- `name`: Customer's first name.  
+- `last_name`: Customer's last name.  
+- `address_id`: Relationship with the customer's address.  
+- `phone`: Phone number (optional).  
 
 ---
 
-### **8️⃣ Pedido (`salesorder`)**
-- Contiene la información de los pedidos realizados por los clientes.  
-- Relación con: clientes (`customer`), empleados (`employee`), tiendas (`shop`) y productos (`product`).  
+### **5️⃣ City (`city`)**
+- Defines available cities.  
+- Relationship with: addresses (`address`) and provinces (`province`).  
 
-🗂 **Atributos Principales:**  
-- `salesorder_id`: Identificador único del pedido.  
-- `salesorder_number`: Número de pedido (único y autoincremental).  
-- `customer_id`: Relación con el cliente que realizó el pedido.  
-- `close_date`: Fecha de cierre del pedido.  
-- `delivery_method`: Método de entrega (a domicilio o en tienda).  
-- `quantity`: Cantidad total del pedido.  
-- `price`: Precio total del pedido.  
-- `employee_id`: Relación con el empleado asignado.  
-- `shop_id`: Relación con la tienda.  
+🗂 **Main Attributes:**  
+- `city_id`: Unique identifier for the city.  
+- `name`: City name.  
+- `code`: Unique city code.  
+- `province_id`: Relationship with the province.  
 
 ---
 
-### **9️⃣ Producto (`product`)**
-- Contiene la información de los productos disponibles.  
-- Relación con: pedidos (`salesorder`) y categorías (`product_category`).  
+### **6️⃣ Province (`province`)**
+- Stores information about provinces.  
+- Relationship with: cities (`city`) and countries (`country`).  
 
-🗂 **Atributos Principales:**  
-- `product_id`: Identificador único del producto.  
-- `name`: Nombre del producto.  
-- `description`: Descripción detallada.  
-- `image`: Imagen del producto (opcional).  
-- `price`: Precio unitario.  
-- `parent_product`: Producto padre (si aplica).  
-- `code`: Código único del producto.  
-- `product_category_id`: Relación con la categoría del producto.  
+🗂 **Main Attributes:**  
+- `province_id`: Unique identifier for the province.  
+- `name`: Province name (primary key).  
+- `code`: Unique province code.  
+- `country_id`: Relationship with the country.  
 
 ---
 
-### **🔟 Producto en Pedido (`product_has_salesorder`)**
-- Relaciona los productos con los pedidos.  
+### **7️⃣ Country (`country`)**
+- Defines available countries.  
+- Relationship with: provinces (`province`).  
 
-🗂 **Atributos Principales:**  
-- `product_product_id`: Relación con el producto.  
-- `salesorder_salesorder_id`: Relación con el pedido.  
-- `quantity`: Cantidad del producto en el pedido.  
-
----
-
-### **1️⃣1️⃣ Categoría de Producto (`product_category`)**
-- Clasifica los productos en distintas categorías.  
-
-🗂 **Atributos Principales:**  
-- `product_category_id`: Identificador único de la categoría.  
-- `name`: Nombre de la categoría.  
-- `code`: Código único y autoincremental.  
+🗂 **Main Attributes:**  
+- `country_id`: Unique identifier for the country.  
+- `name`: Country name.  
+- `code`: ISO country code (unique).  
 
 ---
 
-## 🏗 **Relaciones Clave**
-- **Empleado ↔ Tienda**: Cada tienda tiene empleados asignados.  
-- **Empleado ↔ Pedido**: Cada pedido puede estar gestionado por un empleado.  
-- **Cliente ↔ Pedido**: Cada pedido pertenece a un cliente.  
-- **Pedido ↔ Producto**: Cada pedido contiene productos.  
-- **Producto ↔ Categoría**: Cada producto pertenece a una categoría.  
-- **Tienda ↔ Dirección**: Cada tienda tiene una dirección específica.  
-- **Cliente ↔ Dirección**: Cada cliente tiene una dirección registrada.  
-- **Dirección ↔ Ciudad/Provincia/País**: Se almacena la localización geográfica.  
+### **8️⃣ Order (`salesorder`)**
+- Contains information about customer orders.  
+- Relationship with: customers (`customer`), employees (`employee`), stores (`shop`), and products (`product`).  
+
+🗂 **Main Attributes:**  
+- `salesorder_id`: Unique identifier for the order.  
+- `salesorder_number`: Order number (unique and auto-incremental).  
+- `customer_id`: Relationship with the customer who made the order.  
+- `close_date`: Order close date.  
+- `delivery_method`: Delivery method (home delivery or in-store).  
+- `quantity`: Total order quantity.  
+- `price`: Total order price.  
+- `employee_id`: Relationship with the assigned employee.  
+- `shop_id`: Relationship with the store.  
+
+---
+
+### **9️⃣ Product (`product`)**
+- Contains information about available products.  
+- Relationship with: orders (`salesorder`) and categories (`product_category`).  
+
+🗂 **Main Attributes:**  
+- `product_id`: Unique identifier for the product.  
+- `name`: Product name.  
+- `description`: Detailed description.  
+- `image`: Product image (optional).  
+- `price`: Unit price.  
+- `parent_product`: Parent product (if applicable).  
+- `code`: Unique product code.  
+- `product_category_id`: Relationship with the product category.  
+
+---
+
+### **🔟 Product in Order (`product_has_salesorder`)**
+- Links products with orders.  
+
+🗂 **Main Attributes:**  
+- `product_product_id`: Relationship with the product.  
+- `salesorder_salesorder_id`: Relationship with the order.  
+- `quantity`: Quantity of the product in the order.  
+
+---
+
+### **1️⃣1️⃣ Product Category (`product_category`)**
+- Classifies products into different categories.  
+
+🗂 **Main Attributes:**  
+- `product_category_id`: Unique identifier for the category.  
+- `name`: Category name.  
+- `code`: Unique and auto-incremental code.  
+
+---
+
+## 🏗 **Key Relationships**
+- **Employee ↔ Store**: Each store has assigned employees.  
+- **Employee ↔ Order**: Each order can be managed by an employee.  
+- **Customer ↔ Order**: Each order belongs to a customer.  
+- **Order ↔ Product**: Each order contains products.  
+- **Product ↔ Category**: Each product belongs to a category.  
+- **Store ↔ Address**: Each store has a specific address.  
+- **Customer ↔ Address**: Each customer has a registered address.  
+- **Address ↔ City/Province/Country**: Geographical location is stored.  
