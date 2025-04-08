@@ -1,8 +1,7 @@
-Here is the translation of your database schema description for GitHub:
+# 🏥 Pizzeria
 
-### 📌 **Database: mydb_task_001_lvl_02**
+## 📄 Description
 
-📍 **Description:**  
 This database schema manages information about employees, stores, customers, addresses, orders, and products. It is designed for a store with both delivery and in-store services.
 
 ---
