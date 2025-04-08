@@ -1,4 +1,4 @@
-# 🏥 Pizzeria
+# 🍕Pizzeria
 
 ## 📄 Description
 
